@@ -1,25 +1,32 @@
 #pragma once
 
-#include "../include/mode.hpp"
+#include <termios.h>
+#include <unistd.h>
+#include <iostream>
+#include <exception>
+#include <sys/ioctl.h>
 
-namespace Editor{
-    class Window{   
-
+namespace TerminalTextEditor{
+    class Window{
         private:
-            static Editor::Window *_m_window_instance;
-            Window();
-
-        public:
             int _m_rows;
             int _m_cols;
-            bool _m_insert_mode;
+            static bool _m_editor_mode;
+            static Window* _m_instance;
+            Window();
+        
+        public: 
+            static termios orig_termios;
+            ~Window(){}
+            Window(const Window &) = delete;
+            Window &operator=(const Window &) = delete;
 
-            ~Window();
-            Window(const Editor::Window &) = delete;
-            Window &operator=(const Editor::Window &) = delete;
-
-            Editor::Window* getWindowInstance();
-
+            int getWindowHeight();
+            int getWindowWidth();
+            static void initRowMode();
+            static void exitRowMode();
+            static void clearWindow();
+            static Window* getInstance();
             void terminate();
     };
 };

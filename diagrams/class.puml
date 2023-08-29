@@ -1,0 +1,90 @@
+@startuml
+
+class window << (S,#FF7700) Singleton >>{
+    -_m_rows
+    -_m_cols
+    -_m_editor_mode
+    +getRows()
+    +getCols()
+    +getMode()
+    +{static}initRowMode()
+    +{static}exitRowMode()
+    +{static}clearWindow()
+    +{static}getInstance()
+}
+
+enum cursor_movement{
+    up
+    down
+    right
+    left
+}
+
+class cursor << (S,#FF7700) Singleton >>{
+    -_m_x
+    -_m_y
+    +move()
+    +{static}getInstance()
+}
+
+cursor <|-- window
+
+class keyboard << (S,#FF7700) Singleton >>{
+    +handleKeyPress()
+    +{static}getInstance()
+}
+
+class writer {
+    +write()
+}
+
+class reader{
+    +read()
+}
+
+class buffer<? extends reader writer>
+buffer : data
+buffer : length
+buffer : mode
+
+buffer *- reader
+buffer *- writer
+
+class editor << (S,#FF7700) Singleton >>{
+    -refreshScreen()
+    -drowLine()
+    +loop()
+}
+
+class inputHandler << (S,#FF7700) Singleton >>{
+    +readNext()
+    -parseData()
+}
+
+class controller{
+    +search()
+    +addData()
+    +removeData()
+}
+
+
+@enduml
+' @startuml
+' abstract        abstract
+' abstract class  "abstract class"
+' annotation      annotation
+' circle          circle
+' ()              circle_short_form
+' class           class
+' class           class_stereo  <<stereotype>>
+' diamond         diamond
+' <>              diamond_short_form
+' entity          entity
+' enum            enum
+' exception       exception
+' interface       interface
+' metaclass       metaclass
+' protocol        protocol
+' stereotype      stereotype
+' struct          struct
+' @enduml
