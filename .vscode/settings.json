@@ -66,5 +66,8 @@
         "format": "cpp"
     },
     "plantuml.server": "https://www.plantuml.com/plantuml",
-    "plantuml.render": "Local"
+    "plantuml.render": "Local",
+    "plantuml.commandArgs": [
+        "-DGRAPHVIZ_DOT=/opt/homebrew/bin/dot",
+    ]
 }

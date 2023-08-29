@@ -1,0 +1,11 @@
+@startuml
+Terminal -> Text_Editor: move terminal into row mode
+
+Text_Editor -> Text_Editor: get instance
+
+Text_Editor -> Text_Editor: refresh screen
+
+Text_Editor -> Input: read keyboard input
+
+Text_Editor -> Terminal: dissable row mode
+@enduml
