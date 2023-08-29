@@ -1,13 +1,9 @@
 #pragma once
 
-
+#include "common.hpp"
 #include "window.hpp"
 
 namespace TerminalTextEditor{
-
-    enum CursorControl{
-        UP=1000, DOWN, LEFT, RIGHT
-    };
 
     class Cursor{
         private:

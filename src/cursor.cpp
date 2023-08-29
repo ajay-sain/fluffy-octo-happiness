@@ -2,6 +2,7 @@
 
 namespace TerminalTextEditor
 {
+    Cursor* Cursor::_m_instance;
 
     Cursor::Cursor()
     {

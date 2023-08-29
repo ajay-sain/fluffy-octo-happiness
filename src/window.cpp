@@ -2,6 +2,10 @@
 
 namespace TerminalTextEditor
 {
+
+    Window* Window::_m_instance;
+    termios Window::orig_termios;
+
     Window::Window()
     {
         struct winsize ws;
@@ -25,7 +29,7 @@ namespace TerminalTextEditor
 
     void Window::initRowMode()
     {
-        _m_editor_mode = true;
+        // _m_editor_mode = true;
         try
         {
             std::cout << "############################## Enabling Row Mode ###############################\r\n";
@@ -49,8 +53,8 @@ namespace TerminalTextEditor
     {
         std::cout << "############################## Destroying Row Mode ###############################\r\n";
         tcsetattr(STDIN_FILENO, TCSAFLUSH, &orig_termios);
-        Window::clearWindow();
-        _m_editor_mode = false;
+        // Window::clearWindow();
+        // _m_editor_mode = false;
     }
 
     void Window::clearWindow()
@@ -64,6 +68,12 @@ namespace TerminalTextEditor
         if(_m_instance == NULL)
             _m_instance = new Window();
         return _m_instance;
+    }
+
+    void Window::terminate(){
+        Window::exitRowMode();
+        // Window::clearWindow();
+        exit(0);
     }
 
 };

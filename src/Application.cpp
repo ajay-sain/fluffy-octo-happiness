@@ -1,21 +1,25 @@
-// #include "../include/mode.hpp"
-// #include "../include/editor.hpp"
+#include "../include/window.hpp"
+#include "../include/keyboard.hpp"
 
-// int main(int argc, char const *argv[])
-// {
-//     Editor::WindowMode::enableRowMode();
+int main(int argc, char const *argv[])
+{
+    TerminalTextEditor::Window::initRowMode();
 
-//     Editor::TerminalEditor* editor = Editor::TerminalEditor::getInstance();
+    TerminalTextEditor::Keyboard* keyboard = TerminalTextEditor::Keyboard::getInstance();
 
-//     try
-//     {
-//         editor->loop();
-//     }
-//     catch (std::exception e)
-//     {
-//         std::cout << e.what() << std::endl;
-//     }
+    try
+    {
+        char c;
+        keyboard->handleKeyPress();
+        // while(read(STDIN_FILENO, &c, 1) == 1){
+        //     std::cout << c ;
+        // }
+    }
+    catch (std::exception e)
+    {
+        std::cout << e.what() << std::endl;
+    }
 
-//     Editor::WindowMode::disableRowMode();
-//     return 0;
-// }
+    TerminalTextEditor::Window::exitRowMode();
+    return 0;
+}

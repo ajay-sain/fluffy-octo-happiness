@@ -1,10 +1,6 @@
 #pragma once
 
-#include <termios.h>
-#include <unistd.h>
-#include <iostream>
-#include <exception>
-#include <sys/ioctl.h>
+#include "common.hpp"
 
 namespace TerminalTextEditor{
     class Window{
@@ -17,7 +13,7 @@ namespace TerminalTextEditor{
         
         public: 
             static termios orig_termios;
-            ~Window(){}
+            ~Window();
             Window(const Window &) = delete;
             Window &operator=(const Window &) = delete;
 
@@ -27,6 +23,6 @@ namespace TerminalTextEditor{
             static void exitRowMode();
             static void clearWindow();
             static Window* getInstance();
-            void terminate();
+            static void terminate();
     };
 };
