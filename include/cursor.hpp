@@ -9,8 +9,8 @@ namespace TerminalTextEditor{
         private:
             static Cursor* _m_instance;
             Window* _m_window;
-            int _m_x;
-            int _m_y;
+            int _m_x = 0;
+            int _m_y = 0;
             Cursor();
         
         public: 
@@ -19,6 +19,9 @@ namespace TerminalTextEditor{
             Cursor &operator=(const Cursor &);
             void move(Cursor);
             void move(int x, int y);
+            void move(int);
             static Cursor* getInstance();
+            int getX();
+            int getY();
     };
 };

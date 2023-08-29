@@ -1,19 +1,16 @@
 #include "../include/window.hpp"
 #include "../include/keyboard.hpp"
+#include "../include/editor.hpp"
 
 int main(int argc, char const *argv[])
 {
     TerminalTextEditor::Window::initRowMode();
 
-    TerminalTextEditor::Keyboard* keyboard = TerminalTextEditor::Keyboard::getInstance();
+    TerminalTextEditor::Editor *editor = TerminalTextEditor::Editor::getInstance();
 
     try
     {
-        char c;
-        keyboard->handleKeyPress();
-        // while(read(STDIN_FILENO, &c, 1) == 1){
-        //     std::cout << c ;
-        // }
+        editor->loop();
     }
     catch (std::exception e)
     {

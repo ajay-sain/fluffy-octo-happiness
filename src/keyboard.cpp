@@ -7,6 +7,10 @@ namespace TerminalTextEditor
 
     Keyboard *Keyboard::_m_instance;
 
+    Keyboard::Keyboard(){}
+
+    Keyboard::~Keyboard(){}
+
     Keyboard *Keyboard::getInstance()
     {
         if (_m_instance == NULL)

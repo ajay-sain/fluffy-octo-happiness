@@ -6,6 +6,8 @@
 #include <exception>
 #include <sys/ioctl.h>
 
+#define CTRL_KEY(k) ((k) & 0x1f)
+
 namespace TerminalTextEditor{
 
     enum ArrowKey{
